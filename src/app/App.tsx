@@ -155,10 +155,11 @@ export default function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 0);
       setShowScrollTop(window.scrollY > 300);
     };
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -417,7 +418,7 @@ export default function App() {
       <header
         ref={headerRef}
         className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-300 ${
-          activeSection === 'home'
+          activeSection === 'home' && !isScrolled
             ? 'bg-transparent border-b border-transparent'
             : isScrolled
             ? 'bg-neutral-900/55 backdrop-blur-xl border-b border-white/20 shadow-[0_8px_30px_rgba(0,0,0,0.25)]'
